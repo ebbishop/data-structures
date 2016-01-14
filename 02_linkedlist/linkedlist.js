@@ -1,42 +1,37 @@
-var LinkedList = function() {
-  this.head = undefined;
-  this.tail = undefined;
+function LinkedList (){
+	this.head = null;
+	this.tail = null;
 }
 
-LinkedList.prototype.addToTail = function(thing1) {
-  if (!this.head) {
-    this.addToHead(thing1);
-  } else {
-    var node = new Node(thing1);
-    node.previous = this.tail;
-    this.tail.next = node;
-    this.tail = node;
-  }
-}
+LinkedList.prototype.addToTail = function(value) {
+	var node = new Node(value);
+	this.tail = node;
+	if(this.head == null){
+		this.head = node;
+	}};
 
-LinkedList.prototype.addToHead = function(thing2) {
-  var node = new Node(thing2);
-  this.head = node;
-  this.tail = node;
-}
+LinkedList.prototype.removeHead = function(first_argument) {
+	// body...
+};
 
-LinkedList.prototype.removeHead = function() {
-  if (!this.head) {
-    return undefined;
-  }
+LinkedList.prototype.addToHead = function(value) {
+	var node = new Node(value);
+	this.head = node;
+	if(!this.tail){
+		this.tail = node;
+	}
+};
 
-  var headToReturn = this.head;
-  var valToReturn = headToReturn.value;
-  this.head = headToReturn.previous;
-  return valToReturn;
-}
+LinkedList.prototype.search = function(first_argument) {
+	// body...
+};
 
-LinkedList.prototype.search = function() {
-  
-}
+LinkedList.prototype.isEmpty = function() {
+	// body...
+};
 
-var Node = function(value) {
-  this.value = value;
-  this.next = null;
-  this.previous = null;
+function Node (value) {
+	this.value = value;
+	this.next = null;
+	this.previous = null;
 }
