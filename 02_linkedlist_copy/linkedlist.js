@@ -8,19 +8,13 @@ function LinkedList (){
 // and therefore doesn't try to assign previous if there is
 // only one node added via addToTail
 LinkedList.prototype.addToTail = function(value) {
+	var node = new Node(value, null, this.tail);
 	if (this.tail) {
-		var prevTail = this.tail;
-		var node = new Node(value, null, this.tail);
 		this.tail.next = node;
 	}else{
-		var node = new Node(value);
-	};
-	
-	this.tail = node;
-// if only one node added via this method, assign head, too
-	if(this.head == null){
 		this.head = node;
-	}
+	};
+	this.tail = node;
 };
 
 LinkedList.prototype.removeHead = function() {
@@ -43,30 +37,24 @@ LinkedList.prototype.removeHead = function() {
 };
 
 LinkedList.prototype.addToHead = function(value) {
+	var node = new Node(value, this.head);
 	if(this.head){
-		var node = new Node(value, this.head, null);
-		var prevHead = this.head;
 		this.head.previous = node;
 	}else{
-		var node = new Node(value);
-	}
-	this.head = node;
-	if(!this.tail){
 		this.tail = node;
 	}
+	this.head = node;
 };
 
 LinkedList.prototype.removeTail = function() {
-	if(!this.tail){
-		return undefined;
-	}
+	if(!this.tail) return;
 	var returnTailValue = this.tail.value;
-	if(this.tail != this.head){
-		var newTail = this.tail.previous;
-		newTail.next = null;
-		this.tail = newTail;
+
+	this.tail = this.tail.previous;
+
+	if(this.tail){
+		this.tail.next = null;
 	}else{
-		this.tail = null;
 		this.head = null;
 	}
 
